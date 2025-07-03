@@ -1,4 +1,4 @@
-  
+// Const para el dato base del simulador  
     const videojuegos = [
       { id: 1, nombre: "FC 2026", precio: 10000, genero: "Deportes" },
       { id: 2, nombre: "GTA VI", precio: 15000, genero: "Acción / Mundo abierto" },
@@ -6,7 +6,7 @@
       { id: 4, nombre: "Red Dead Redemption 2", precio: 14000, genero: "Acción / Western" }
     ];
 
-
+// La función para mostrar el catálogo
     function mostrarCatalogo() {
       console.log("🎮 Catálogo de Videojuegos:");
 
@@ -22,11 +22,9 @@
       });
     }
 
-
-    
     function simulador() {
       mostrarCatalogo();
-      let opcion = parseInt(prompt(
+      let opcion = parseInt(prompt( 
         "Elegí un videojuego para ver detalles:\n" +
         "1 - FC 2026\n" +
         "2 - GTA VI\n" +
@@ -42,10 +40,7 @@
         case 3:
         case 4:
          
-          const seleccionado = obtenerJuegoPorId(opcion);
-
-
-         
+          const seleccionado = obtenerJuegoPorId(opcion);         
           alert(
             "🎮 Elegiste: " + seleccionado.nombre + "\n" +
             "💵 Precio: $" + seleccionado.precio + "\n" +
@@ -53,11 +48,9 @@
           );
           break;
 
-
         case 0:
           alert("Gracias por visitar nuestra tienda de videojuegos 🎮");
           break;
-
 
         default:
           alert("❌ Opción inválida. Por favor, elegí un número del 1 al 4, o 0 para salir.");
