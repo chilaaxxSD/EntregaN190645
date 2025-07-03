@@ -16,13 +16,14 @@
       console.log("4 - Red Dead Redemption 2 - $14000 - Acción / Western");
     }
 
-    function obtenerJuegoPorId(id) {
+     function obtenerJuegoPorId(id) {
       return videojuegos.find(function(juego) {
         return juego.id === id;
       });
     }
 
 
+    
     function simulador() {
       mostrarCatalogo();
       let opcion = parseInt(prompt(
@@ -34,15 +35,17 @@
         "0 - Salir"
       ));
 
+
       switch (opcion) {
-        case 1: 
-        case 2: 
-        case 3: 
-        case 4: 
-          
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+         
           const seleccionado = obtenerJuegoPorId(opcion);
 
-          
+
+         
           alert(
             "🎮 Elegiste: " + seleccionado.nombre + "\n" +
             "💵 Precio: $" + seleccionado.precio + "\n" +
@@ -50,17 +53,21 @@
           );
           break;
 
-        case 0: 
+
+        case 0:
           alert("Gracias por visitar nuestra tienda de videojuegos 🎮");
           break;
 
-        default: 
+
+        default:
           alert("❌ Opción inválida. Por favor, elegí un número del 1 al 4, o 0 para salir.");
           break;
       }
 
+
      
       console.log("Fin del simulador");
     }
+
 
     simulador();
