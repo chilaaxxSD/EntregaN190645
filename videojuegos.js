@@ -39,13 +39,22 @@
         case 2:
         case 3:
         case 4:
-         
-          const seleccionado = obtenerJuegoPorId(opcion);         
+          const seleccionado = obtenerJuegoPorId(opcion);
+
           alert(
             "🎮 Elegiste: " + seleccionado.nombre + "\n" +
             "💵 Precio: $" + seleccionado.precio + "\n" +
             "📚 Género: " + seleccionado.genero
           );
+
+// agrego un prompt para confirmar la compra mediante IF y Else
+          let confirmar = prompt("¿Confirmás la compra? (si / no)").toLowerCase();
+
+          if (confirmar === "si") {
+            alert("✅ ¡Gracias por tu compra! Disfrutá del juego 🎮");
+          } else {
+            alert("❌ Compra cancelada. Volvé a visitar cuando quieras.");
+          }
           break;
 
         case 0:
@@ -57,10 +66,8 @@
           break;
       }
 
-
-     
       console.log("Fin del simulador");
     }
 
-
+   
     simulador();
