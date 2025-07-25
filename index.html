@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chilistation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chilistation</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <script src="videojuegos.js"></script>
+  <header>
+    <h1>🎮 Chilistation</h1>
+  </header>
+
+  <main>
+    <section id="catalogo" class="contenedor-catalogo"></section>
+
+    <div class="carrito-info">
+      <h2>🛒 Carrito (<span id="cantidad">0</span>)</h2>
+      <button id="verCarrito">Ver carrito</button>
+      <div id="lista-carrito"></div>
+    </div>
+  </main>
+
+  <script src="videojuegos.js"></script>
 </body>
 </html>
+

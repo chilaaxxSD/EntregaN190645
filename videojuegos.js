@@ -1,73 +1,108 @@
-// Const para el dato base del simulador  
-    const videojuegos = [
-      { id: 1, nombre: "FC 2026", precio: 10000, genero: "Deportes" },
-      { id: 2, nombre: "GTA VI", precio: 15000, genero: "Acción / Mundo abierto" },
-      { id: 3, nombre: "God of War", precio: 12000, genero: "Aventura / Mitología" },
-      { id: 4, nombre: "Red Dead Redemption 2", precio: 14000, genero: "Acción / Western" }
-    ];
-
-// La función para mostrar el catálogo
-    function mostrarCatalogo() {
-      console.log("🎮 Catálogo de Videojuegos:");
-
-      console.log("1 - FC 2026 - $10000 - Deportes");
-      console.log("2 - GTA VI - $15000 - Acción / Mundo abierto");
-      console.log("3 - God of War - $12000 - Aventura / Mitología");
-      console.log("4 - Red Dead Redemption 2 - $14000 - Acción / Western");
-    }
-
-     function obtenerJuegoPorId(id) {
-      return videojuegos.find(function(juego) {
-        return juego.id === id;
-      });
-    }
-
-    function simulador() {
-      mostrarCatalogo();
-      let opcion = parseInt(prompt( 
-        "Elegí un videojuego para ver detalles:\n" +
-        "1 - FC 2026\n" +
-        "2 - GTA VI\n" +
-        "3 - God of War\n" +
-        "4 - Red Dead Redemption 2\n" +
-        "0 - Salir"
-      ));
+const videojuegos = [
+  {
+    id: 1,
+    nombre: "FC 2026",
+    precio: 10000,
+    genero: "Deportes",
+    imagen: "image/fc26.jpg"
+  },
+  {
+    id: 2,
+    nombre: "GTA V",
+    precio: 15000,
+    genero: "Acción / Mundo abierto",
+    imagen: "image/gta5.jpg"
+  },
+  {
+    id: 3,
+    nombre: "God of War",
+    precio: 12000,
+    genero: "Aventura / Mitología",
+    imagen: "image/godofwar.jpg"
+  },
+  {
+    id: 4,
+    nombre: "Red Dead Redemption 2",
+    precio: 14000,
+    genero: "Acción / Western",
+    imagen: "image/rdr2.jpg"
+  }
+];
 
 
-      switch (opcion) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-          const seleccionado = obtenerJuegoPorId(opcion);
+const catalogo = document.getElementById("catalogo");
+const cantidad = document.getElementById("cantidad");
+const verCarrito = document.getElementById("verCarrito");
+const listaCarrito = document.getElementById("lista-carrito");
 
-          alert(
-            "🎮 Elegiste: " + seleccionado.nombre + "\n" +
-            "💵 Precio: $" + seleccionado.precio + "\n" +
-            "📚 Género: " + seleccionado.genero
-          );
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// agrego un prompt para confirmar la compra mediante IF y Else
-          let confirmar = prompt("¿Confirmás la compra? (si / no)").toLowerCase();
 
-          if (confirmar === "si") {
-            alert("✅ ¡Gracias por tu compra! Disfrutá del juego 🎮");
-          } else {
-            alert("❌ Compra cancelada. Volvé a visitar cuando quieras.");
-          }
-          break;
+function renderizarCatalogo() {
+  videojuegos.forEach((juego) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${juego.imagen}" alt="${juego.nombre}">
+      <h3>${juego.nombre}</h3>
+      <p>${juego.genero}</p>
+      <p>$${juego.precio}</p>
+      <button onclick="agregarAlCarrito(${juego.id})">Agregar al carrito</button>
+    `;
+    catalogo.appendChild(card);
+  });
+}
 
-        case 0:
-          alert("Gracias por visitar nuestra tienda de videojuegos 🎮");
-          break;
+// Agrega un juego 
+function agregarAlCarrito(id) {
+  const juego = videojuegos.find((j) => j.id === id);
+  carrito.push(juego);
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarContador();
+}
 
-        default:
-          alert("❌ Opción inválida. Por favor, elegí un número del 1 al 4, o 0 para salir.");
-          break;
-      }
 
-      console.log("Fin del simulador");
-    }
+function eliminarDelCarrito(index) {
+  carrito.splice(index, 1);
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarContador();
+  mostrarCarrito();
+}
 
-   
-    simulador();
+
+function actualizarContador() {
+  cantidad.textContent = carrito.length;
+}
+
+// Muestra el contenido del carrito
+function mostrarCarrito() {
+  listaCarrito.innerHTML = "";
+
+  if (carrito.length === 0) {
+    listaCarrito.innerHTML = "<p>El carrito está vacío.</p>";
+    return;
+  }
+
+  carrito.forEach((juego, index) => {
+    const item = document.createElement("div");
+    item.innerHTML = `
+      <p>
+        🎮 ${juego.nombre} - $${juego.precio}
+        <button onclick="eliminarDelCarrito(${index})">❌</button>
+      </p>
+    `;
+    listaCarrito.appendChild(item);
+  });
+
+  const total = carrito.reduce((acc, juego) => acc + juego.precio, 0);
+  const totalDiv = document.createElement("p");
+  totalDiv.innerHTML = `<strong>Total: $${total}</strong>`;
+  listaCarrito.appendChild(totalDiv);
+}
+
+// Evento para ver el carrito
+verCarrito.addEventListener("click", mostrarCarrito);
+
+// Inicialización al cargar
+renderizarCatalogo();
+actualizarContador();
