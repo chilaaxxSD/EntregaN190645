@@ -50,7 +50,7 @@ function renderizarCatalogo() {
       <button onclick="agregarAlCarrito(${juego.id})">Agregar al carrito</button>
     `;
     catalogo.appendChild(card);
-  });
+  }); 
 }
 
 // Agrega un juego 
@@ -106,3 +106,5 @@ verCarrito.addEventListener("click", mostrarCarrito);
 // Inicialización al cargar
 renderizarCatalogo();
 actualizarContador();
+
+// empezamos con la entrega final
