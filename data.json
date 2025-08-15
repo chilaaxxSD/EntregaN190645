@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nombre": "FC 2026",
+    "precio": 10000,
+    "genero": "Deportes",
+    "imagen": "image/fc26.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "GTA V",
+    "precio": 15000,
+    "genero": "Acción / Mundo abierto",
+    "imagen": "image/gta5.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "God of War",
+    "precio": 12000,
+    "genero": "Aventura / Mitología",
+    "imagen": "image/godofwar.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Red Dead Redemption 2",
+    "precio": 14000,
+    "genero": "Acción / Western",
+    "imagen": "image/rdr2.jpg"
+  }
+]

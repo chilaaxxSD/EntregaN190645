@@ -2,9 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chilistation</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- Toastify (notificaciones) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <!-- Luxon (fechas) -->
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
 </head>
 <body>
   <header>
@@ -12,16 +19,46 @@
   </header>
 
   <main>
+    <!-- Catálogo -->
     <section id="catalogo" class="contenedor-catalogo"></section>
 
-    <div class="carrito-info">
+    <!-- Carrito -->
+    <section class="carrito-info">
       <h2>🛒 Carrito (<span id="cantidad">0</span>)</h2>
-      <button id="verCarrito">Ver carrito</button>
       <div id="lista-carrito"></div>
-    </div>
+      <p id="total" class="total"></p>
+      <button id="finalizar" class="btn-primario oculto">Finalizar compra</button>
+    </section>
+
+    <!-- Checkout -->
+    <section id="checkout" class="checkout oculto">
+      <h2>🧾 Checkout</h2>
+      <form id="formCheckout" autocomplete="off">
+        <label>
+          Nombre y Apellido
+          <input type="text" id="nombre" required>
+        </label>
+        <label>
+          Email
+          <input type="email" id="email" required>
+        </label>
+        <label>
+          Método de pago
+          <select id="pago" required>
+            <option value="">Seleccioná…</option>
+            <option>Efectivo</option>
+            <option>Transferencia</option>
+            <option>Mercado Pago</option>
+          </select>
+        </label>
+        <button type="submit" class="btn-primario">Confirmar compra</button>
+        <button type="button" id="cancelar" class="btn-secundario">Cancelar</button>
+      </form>
+
+      <div id="ticket" class="ticket oculto"></div>
+    </section>
   </main>
 
-  <script src="videojuegos.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
-
